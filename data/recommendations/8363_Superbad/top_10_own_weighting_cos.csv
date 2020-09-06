@@ -1,0 +1,12 @@
+movie_id,title,release_year,vote_count,vote_average,popularity,genres,rec_features,similarity_score
+8363,Superbad,2007.0,2152.0,7.0,16.205105,['Comedy'],"{'+alcohol+': 3.126, '+anxiety+': 3.126, '+attempt+': 3.126, '+buddy+': 3.126, '+chaotic+': 3.126, '+college+': 3.126, '+evening+': 3.126, '+face+': 3.126, '+fake+': 3.126, '+friend+': 3.126, '+guy+': 3.126, '+party+': 3.126, '+prepare+': 3.126, '+score+': 3.126, '+takes+': 3.126, '+territory+': 3.126, '+turn+': 3.126, '2000_to_2010': 2.0, 'actorChristopherMintz-Plasse': 1.986, 'actorJonahHill': 1.986, 'actorMichaelCera': 1.986, 'becoming+an+adult': 3.126, 'composerLyleWorkman': 1.072, 'directorGregMottola': 2.19, 'genreComedy': 4.994, 'high+school': 3.126, 'one+night': 3.126, 'producerJuddApatow': 0.927, 'producerShaunaRobertson': 0.927, 'runtime_above_110': 1.0, 'young+people': 3.126}",1.0000000000000004
+17899,"Sex, Party and Lies",2009.0,35.0,4.0,7.156341,"['Comedy', 'Drama']","{'+alcohol+': 3.282, '+college+': 3.282, '+evening+': 3.282, '+party+': 3.282, '+prepare+': 3.282, '2000_to_2010': 2.0, 'genreComedy': 2.497}",0.26926999384936245
+57112,Tu la conosci Claudia?,2004.0,183.0,6.6,5.038131,['Comedy'],"{'2000_to_2010': 2.0, 'genreComedy': 4.994}",0.26535462218564027
+53957,La matassa,2009.0,83.0,6.6,4.314133,['Comedy'],"{'2000_to_2010': 2.0, 'genreComedy': 4.994}",0.26190293714839796
+14644,Boudu,2005.0,22.0,4.6,4.792541,['Comedy'],"{'2000_to_2010': 2.0, 'genreComedy': 4.994}",0.2579549801613586
+35554,Cado dalle nubi,2009.0,299.0,6.5,6.40477,['Comedy'],"{'2000_to_2010': 2.0, 'genreComedy': 4.994}",0.25358447421411145
+53729,Wild Cherry,2009.0,16.0,4.7,5.689825,['Comedy'],"{'+friend+': 4.689, '+turn+': 4.689, '2000_to_2010': 2.0, 'genreComedy': 4.994, 'high+school': 4.689, 'runtime_above_110': 1.0}",0.24534731358061648
+16614,Adventureland,2009.0,748.0,6.4,6.77887,['Comedy'],"{'+college+': 1.823, '+prepare+': 1.823, '+takes+': 1.823, '2000_to_2010': 2.0, 'directorGregMottola': 2.19, 'genreComedy': 4.994}",0.24473448101495954
+26626,Glory Daze,1995.0,15.0,5.8,10.738755,['Comedy'],"{'+alcohol+': 2.188, '+college+': 2.188, '+friend+': 2.188, '+party+': 2.188, 'genreComedy': 4.994}",0.2369398076963401
+12695,Still Smokin,1983.0,33.0,5.4,3.767872,['Comedy'],"{'+guy+': 5.47, '+party+': 5.47, '+turn+': 5.47, 'genreComedy': 4.994}",0.2357584964947233
+246320,The Three Brothers: The Return,2014.0,110.0,5.0,5.084853,['Comedy'],{'genreComedy': 4.994},0.23570159512137698

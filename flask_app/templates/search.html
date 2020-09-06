@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Movie Library</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.search_field.label }}<br>
+            {{ form.search_field(size=32) }}
+        <p>{{ form.submit() }}</p>
+        {% if results %}
+            <span>Time taken: {{ time_taken }} for {{ results|length }} results.</span>
+            {% for item in results %}
+                <h2>{{ item.title }} ({{item.release_date.strftime('%Y')}})</h2>
+                <h3>{{ item.overview }} </h3>
+                <h3>Rating: {{ item.vote_average|round(2) }}</h3>
+                {% if dict_movies_lib[item.movie_id] %}
+                    <h4>Movie already added! Uncheck to remove from favourites.</h4>
+                    <h4>Add<input type="checkbox" value={{ item.movie_id }} checked name="add_to_library"></h4>
+                {% else %}
+                    <h4>Add<input type="checkbox" value={{ item.movie_id }} name="add_to_library"></h4>
+                {% endif %}
+                <img src="{{tmdb_base_url + item.poster_path }}" />
+            {% endfor %}
+        <p>Apply changes <input type="submit" name="apply_changes"></p>
+        {% endif %}
+    </form>
+
+{% endblock %}

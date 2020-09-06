@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <div>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Log in</a> |
+            <a href="{{ url_for('register') }}">Register</a>
+            {% else %}
+            Logged in as: {{ current_user.username }} |
+            <a href="{{ url_for('search') }}">Search movies</a> |
+            <a href="{{ url_for('library') }}">Your movie library</a> |
+            <a href="{{ url_for('recommendations_user_profile', id = 'good', page_num=1) }}">Get recommendations based on your taste</a> |
+            <a href="{{ url_for('recommendations_user_profile', id = 'neutral', page_num=1) }}">Broaden your movie horizons</a> |
+            <a href="{{ url_for('logout') }}">Log out</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

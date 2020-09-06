@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <span>Time taken: {{ time_taken }} for recommendations.</span>
+    <form action="" method="post" novalidate>
+    <h1>Recommendations for {{ main_movie_movie_obj.title }} ({{main_movie_movie_obj.release_date.strftime('%Y')}})</h1>
+    <h4>Genre: {{ main_movie_genres }} </h4>
+                <h3>{{ main_movie_movie_obj.overview }} </h3>
+                <h3>IMDB Rating: {{ main_movie_movie_obj.vote_average|round(2) }}</h3>
+                <h3>Similarity: {{ main_movie_rec_obj.similarity|int }}</h3>
+                <h3>Similar features:
+                <span>{% for feature_key, tuple_value in dict_main_movie_features.items() %}
+                    <span {% if tuple_value[1]==True %} style="color: red" {% endif %}>
+                       << {{ feature_key }} >>
+                    </span>
+                    {% endfor %}
+                </span>
+                </h3>
+                {% if dict_movies_lib[main_movie_movie_obj.movie_id] %}
+                    <h4>Movie already added! Uncheck to remove from favourites.</h4>
+                    <h4>Add<input type="checkbox" value={{ main_movie_movie_obj.movie_id }} checked name="add_to_library"></h4>
+                {% else %}
+                    <h4>Add<input type="checkbox" value={{ main_movie_movie_obj.movie_id }} name="add_to_library"></h4>
+                {% endif %}
+                <img src="{{tmdb_base_url + main_movie_movie_obj.poster_path }}" />
+
+        {% if list_of_movies_obj_genres %}
+            {% for rec_obj, movie_obj_genre in rec_objects|zip(list_of_movies_obj_genres) %}
+                <h2>{{ movie_obj_genre[0].title }} ({{movie_obj_genre[0].release_date.strftime('%Y')}})</h2>
+                <h4>Genre: {{ movie_obj_genre[1] }} </h4>
+                <h3>{{ movie_obj_genre[0].overview }} </h3>
+                <h3>IMDB Rating: {{ movie_obj_genre[0].vote_average|round(2) }}</h3>
+                <h3>Similarity: {{ rec_obj.similarity|int }}</h3>
+                <h3>Similar features: {{ rec_obj.features }}</h3>
+                {% if dict_movies_lib[movie_obj_genre[0].movie_id] %}
+                    <h4>Movie already added! Uncheck to remove from favourites.</h4>
+                    <h4>Add<input type="checkbox" value={{ movie_obj_genre[0].movie_id }} checked name="add_to_library"></h4>
+                {% else %}
+                    <h4>Add<input type="checkbox" value={{ movie_obj_genre[0].movie_id }} name="add_to_library"></h4>
+                {% endif %}
+                <img src="{{tmdb_base_url + movie_obj_genre[0].poster_path }}" />
+            {% endfor %}
+        <p>Apply changes <input type="submit" name="apply_changes"></p>
+        {% endif %}
+    </form>
+
+{% endblock %}

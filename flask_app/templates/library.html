@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Your Movie Library</h1>
+    <form action="" method="post" novalidate>
+        {% if results %}
+            {% for tuple_item in results %}
+                <h2>{{ tuple_item[0].title }} ({{tuple_item[0].release_date.strftime('%Y')}})</h2>
+                <button type="submit" name="get_recommendations" value={{tuple_item[0].movie_id}}>Get Recommendation</button>
+                <h3>{{ tuple_item[0].overview }} </h3>
+                <h3>IMDB Rating: {{ tuple_item[0].vote_average|round(2) }}</h3>
+                <select name="ratings">
+                    {% for rating in rating_scale %}
+                        <option value="{{rating|float}}" {%if rating==tuple_item[1] %}selected{% endif %} >{{rating}}</option>
+                    {% endfor %}
+                </select>
+                <div title="1-Very Bad | 2-Bad | 3-Neutral | 4-Good | 5-Very Good">Hover for rating scale info</div>
+                <h4>Remove<input type="checkbox" value={{ tuple_item[0].movie_id }} name="remove_from_library"></h4>
+                <img src="{{tmdb_base_url + tuple_item[0].poster_path }}" />
+            {% endfor %}
+            <p>Apply changes <input type="submit" name="apply_changes"></p>
+        {% endif %}
+    </form>
+
+{% endblock %}

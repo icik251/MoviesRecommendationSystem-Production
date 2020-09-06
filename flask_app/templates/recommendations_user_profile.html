@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {% if list_of_movies_obj_genres %}
+            <span>Time taken: {{ time_taken }} for recommendations.</span>
+            {% for movie_obj_genre, similarity in list_of_movies_obj_genres|zip(list_of_similarities) %}
+                <h2>{{ movie_obj_genre[0].title }} ({{movie_obj_genre[0].release_date.strftime('%Y')}})</h2>
+                <h4>Genre: {{ movie_obj_genre[1] }} </h4>
+                <h3>{{ movie_obj_genre[0].overview }} </h3>
+                <h3>IMDB Rating: {{ movie_obj_genre[0].vote_average|round(2) }}</h3>
+                <h3>Similarity: {{ (similarity*100)|round(1)}}%</h3>
+                {% if dict_movies_lib[movie_obj_genre[0].movie_id] %}
+                    <h4>Movie already added! Uncheck to remove from favourites.</h4>
+                    <h4>Add<input type="checkbox" value={{ movie_obj_genre[0].movie_id }} checked name="add_to_library"></h4>
+                {% else %}
+                    <h4>Add<input type="checkbox" value={{ movie_obj_genre[0].movie_id }} name="add_to_library"></h4>
+                {% endif %}
+                <img src="{{tmdb_base_url + movie_obj_genre[0].poster_path }}" />
+            {% endfor %}
+        <p>Apply changes <input type="submit" name="apply_changes"></p>
+            {% if page_num + 1 >= 11 %}
+                {% set next_page_num = 10 %}
+            {% else %}
+                {% set next_page_num = page_num + 1 %}
+            {% endif %}
+            {% if page_num - 1 <= 0 %}
+                {% set prev_page_num = 1 %}
+            {% else %}
+                {% set prev_page_num = page_num - 1 %}
+            {% endif %}
+            <div style="text-align: center">
+            <a href="{{ url_for('recommendations_user_profile', id = id, page_num=prev_page_num) }}"> <- Previous page </a>
+                <a> &nbsp;|&nbsp; </a>
+            <a href="{{ url_for('recommendations_user_profile', id = id, page_num=next_page_num) }}"> Next page -> </a>
+            </div>
+        {% else %}
+            <h1> You have not rated enough movies! </h1>
+            <h2> You should rate at least 5 movies with rating > 3, so we can recommend quality movies! </h2>
+            <h3> Rating scale:
+                <br>1 - Very Bad
+                <br>2 - Bad
+                <br>3 - Neutral
+                <br>4 - Good
+                <br>5 - Very Good
+            </h3>
+        {% endif %}
+
+    </form>
+
+{% endblock %}
