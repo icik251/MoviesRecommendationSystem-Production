@@ -4,6 +4,9 @@ from utils.text_processing import TextProcessing
 qualified_movies_df = pd.read_csv('..\\data\\nlp\\normalized_keywords.csv')
 qualified_movies_df = qualified_movies_df.fillna('')
 print('test')
+print('121212')
+
+
 text_processing_obj = TextProcessing()
 
 """remove stopwords and create count words occurences"""
